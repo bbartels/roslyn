@@ -16,6 +16,7 @@ namespace Microsoft.CodeAnalysis.OrganizeImports;
 [DataContract]
 internal readonly record struct OrganizeImportsOptions
 {
+    [DataMember] public NamespaceGroupConfiguration NamespaceSortOrder { get; init; } = AddImportPlacementOptions.Default.NamespaceSortOrder;
     [DataMember] public bool PlaceSystemNamespaceFirst { get; init; } = AddImportPlacementOptions.Default.PlaceSystemNamespaceFirst;
     [DataMember] public bool SeparateImportDirectiveGroups { get; init; } = SyntaxFormattingOptions.CommonDefaults.SeparateImportDirectiveGroups;
     [DataMember] public string NewLine { get; init; } = LineFormattingOptions.Default.NewLine;
@@ -39,6 +40,7 @@ internal static class OrganizeImportsOptionsProviders
 
         return new()
         {
+            NamespaceSortOrder = options.GetOption(GenerationOptions.ImportDirectivesCustomOrder, language, fallbackOptions.Value.NamespaceSortOrder),
             PlaceSystemNamespaceFirst = options.GetOption(GenerationOptions.PlaceSystemNamespaceFirst, language, fallbackOptions.Value.PlaceSystemNamespaceFirst),
             SeparateImportDirectiveGroups = options.GetOption(GenerationOptions.SeparateImportDirectiveGroups, language, fallbackOptions.Value.SeparateImportDirectiveGroups),
             NewLine = options.GetOption(FormattingOptions2.NewLine, language, fallbackOptions.Value.NewLine)

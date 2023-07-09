@@ -22,6 +22,10 @@ internal sealed record class AddImportPlacementOptions
     public static readonly CodeStyleOption2<AddImportPlacement> s_outsideNamespacePlacementWithSilentEnforcement =
        new(AddImportPlacement.OutsideNamespace, NotificationOption2.Silent);
 
+
+    [DataMember]
+    public NamespaceGroupConfiguration NamespaceSortOrder { get; init; } = NamespaceGroupConfiguration.DefaultConfig;
+
     [DataMember]
     public bool PlaceSystemNamespaceFirst { get; init; } = true;
 

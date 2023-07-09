@@ -19,6 +19,7 @@ namespace Microsoft.CodeAnalysis.CSharp.OrganizeImports
         {
             private readonly bool _placeSystemNamespaceFirst;
             private readonly bool _separateGroups;
+            private readonly Microsoft.CodeAnalysis.Editing.NamepaceGroupConfiguration _t;
             private readonly SyntaxTrivia _newLineTrivia;
 
             public readonly IList<TextChange> TextChanges = new List<TextChange>();

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Immutable;
 using Microsoft.CodeAnalysis.AddImport;
 using Microsoft.CodeAnalysis.CodeStyle;
@@ -10,6 +11,8 @@ using Microsoft.CodeAnalysis.Options;
 
 namespace Microsoft.CodeAnalysis.Editing
 {
+    internal class DirectivesCustomOrder { }
+
     internal class GenerationOptions
     {
         public static readonly PerLanguageOption2<bool> PlaceSystemNamespaceFirst = new(
@@ -24,8 +27,19 @@ namespace Microsoft.CodeAnalysis.Editing
             group: CodeStyleOptionGroups.Usings,
             isEditorConfigOption: true);
 
+        public static readonly PerLanguageOption2<NamespaceGroupConfiguration> ImportDirectivesCustomOrder = new(
+            "dotnet_import_directives_order",
+            defaultValue: NamespaceGroupConfiguration.DefaultConfig,
+            group: CodeStyleOptionGroups.Usings,
+            isEditorConfigOption: true,
+            serializer: new EditorConfigValueSerializer<NamespaceGroupConfiguration>(
+                NamespaceSortConfigParser.ParseNamespaceSortOrder,
+                NamespaceSortConfigParser.SerializeNamespaceSortOrder));
+
         public static readonly ImmutableArray<IOption2> AllOptions = ImmutableArray.Create<IOption2>(
             PlaceSystemNamespaceFirst,
-            SeparateImportDirectiveGroups);
+            SeparateImportDirectiveGroups,
+            ImportDirectivesCustomOrder
+        );
     }
 }
