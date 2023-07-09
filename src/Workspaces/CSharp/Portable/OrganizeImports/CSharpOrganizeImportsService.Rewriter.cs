@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp.Utilities;
 using Microsoft.CodeAnalysis.OrganizeImports;
 using Microsoft.CodeAnalysis.Text;
+using Microsoft.CodeAnalysis.AddImport;
 using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp.OrganizeImports
@@ -19,7 +20,7 @@ namespace Microsoft.CodeAnalysis.CSharp.OrganizeImports
         {
             private readonly bool _placeSystemNamespaceFirst;
             private readonly bool _separateGroups;
-            private readonly Microsoft.CodeAnalysis.Editing.NamepaceGroupConfiguration _t;
+            private readonly NamespaceGroupConfiguration _namespaceSort;
             private readonly SyntaxTrivia _newLineTrivia;
 
             public readonly IList<TextChange> TextChanges = new List<TextChange>();
@@ -28,6 +29,7 @@ namespace Microsoft.CodeAnalysis.CSharp.OrganizeImports
             {
                 _placeSystemNamespaceFirst = options.PlaceSystemNamespaceFirst;
                 _separateGroups = options.SeparateImportDirectiveGroups;
+                _namespaceSort = options.NamespaceSortOrder;
                 _newLineTrivia = CSharpSyntaxGeneratorInternal.Instance.EndOfLine(options.NewLine);
             }
 

@@ -209,7 +209,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\StructuredAnalyzerConfigOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\IdeAnalyzerOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AddImport\NamespaceGroupConfiguration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)editing\NamespaceNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AddImport\NamespaceNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)editing\NamespaceSortSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditorConfig\Language.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditorConfig\LanguageConstants.cs" />

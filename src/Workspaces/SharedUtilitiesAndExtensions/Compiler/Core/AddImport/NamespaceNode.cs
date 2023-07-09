@@ -4,6 +4,8 @@
 
 using System;
 
+namespace Microsoft.CodeAnalysis.AddImport;
+
 internal class NamespaceIdentifier
 {
     public string Name { get; }

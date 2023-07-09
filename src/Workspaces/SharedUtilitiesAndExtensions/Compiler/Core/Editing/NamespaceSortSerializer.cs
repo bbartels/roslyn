@@ -10,6 +10,8 @@ using Roslyn.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.AddImport;
 
+namespace Microsoft.CodeAnalysis.Editing;
+
 internal class NamespaceSortConfigParser
 {
     private const char Separator = ';';
@@ -28,7 +30,7 @@ internal class NamespaceSortConfigParser
     private static string SanitizeInput(string input) => TrimWhitespaces().Replace(input, string.Empty);
 
     public static Optional<NamespaceGroupConfiguration> ParseNamespaceSortOrder(string sortOrder)
-        => new NamespaceGroupConfiguration(SanitizeInput(sortOrder).Split(Separator).Select(x => ParseGroup(x)));
+        => new NamespaceGroupConfiguration(SanitizeInput(sortOrder).Split(Separator).Select(x => ParseGroup(x.AsSpan())));
 
     public static string SerializeNamespaceSortOrder(NamespaceGroupConfiguration sortOrder) => sortOrder.ToString();
 }

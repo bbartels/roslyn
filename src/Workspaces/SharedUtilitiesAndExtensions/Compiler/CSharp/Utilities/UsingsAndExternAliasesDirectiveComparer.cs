@@ -19,6 +19,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Utilities
             NameSyntaxComparer.Create(TokenComparer.SystemFirstInstance),
             TokenComparer.SystemFirstInstance);
 
+        public static readonly IComparer<SyntaxNode> CustomNamespaceSortInstance = new UsingsAndExternAliasesDirectiveComparer(
+            NameSyntaxComparer.Create(TokenComparer.SystemFirstInstance),
+            TokenComparer.SystemFirstInstance);
+
         private readonly IComparer<NameSyntax> _nameComparer;
         private readonly IComparer<SyntaxToken> _tokenComparer;
 
